@@ -1,0 +1,6 @@
+node_modules
+.vercel
+.env*
+*.grib
+climate_shield_feed.json
+__pycache__

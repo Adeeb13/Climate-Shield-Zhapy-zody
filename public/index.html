@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Climate Shield · Team Zhapzody</title><meta name="description" content="Climate Shield: explainable climate-risk intelligence, impact chains, scenario twins and early-warning decision support. Research prototype."><meta name="theme-color" content="#07111F"><meta property="og:title" content="Climate Shield · Team Zhapzody"><meta property="og:description" content="See the risk. Understand the impact. Protect the future."><link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/extras.css"></head><body>
+<a class="skip" href="#main">Skip to content</a><div class="aur"></div><canvas id="bg" aria-hidden="true"></canvas><header><div class="br sg"><i>◈</i> Climate Shield</div><nav id="nav" aria-label="Sections"></nav><span class="chip" id="st">DEMO MODE</span></header>
+<main id="main">
+<section class="v" id="overview"><div class="hero"><div>
+<span class="chip">DEMO MODE · SIMULATED DATA</span>
+<h1 style="margin:14px 0">The world is changing. <em>Be ready before it does.</em></h1>
+<p class="mu" style="max-width:520px">Climate Shield turns environmental intelligence into early risk awareness, geospatial impact insights and informed preparedness decisions.</p>
+<div class="row" style="margin-top:20px"><button class="btn" data-go="atlas">Explore Climate Intelligence</button><button class="btn g" data-go="research">Discover How It Works</button><button class="btn g" id="dm">▶ 2-minute guided demo</button></div>
+<p class="mo mu" style="margin-top:22px">Detect earlier. Understand deeper. Prepare smarter. Protect more.</p></div>
+<div><canvas id="g" width="480" height="480" style="width:100%;max-width:480px" aria-label="Illustrative rotating Earth visualization"></canvas><div class="mo mu" style="text-align:center">Illustrative visualization · not live observations</div></div></div>
+<div class="g3" style="margin-top:20px" id="pillars"></div></section>
+
+<section class="v" id="atlas" hidden><h2>Risk Atlas · Intelligence</h2><p class="mu">Scenario: hypothetical 72-hour rainfall over Bangladesh divisions. Move the slider; the transparent baseline engine recomputes every region.</p>
+<div class="grid"><div class="card"><div class="row" style="margin-bottom:8px"><span class="chip ok">● Flood</span><span class="chip" title="Adapter ready, no dataset connected">Wildfire ◌</span><span class="chip" title="No dataset connected">Heat ◌</span><span class="chip" title="No dataset connected">Rainfall ◌</span><span class="chip" title="No dataset connected">Cyclone ◌</span></div>
+<svg class="map" id="map" viewBox="0 0 400 440" role="img" aria-label="Schematic map of Bangladesh divisions"></svg>
+<div class="mo mu">Schematic outline, not to scale · cursor shows approximate coordinates</div>
+<label class="mu">Simulated 72h rainfall: <b id="rv" class="mo"></b></label><input type="range" id="rain" min="0" max="600" step="10">
+<label class="btn g" data-i style="display:inline-block;margin-top:10px">Load real feed (.json)<input type="file" id="ff" accept=".json,application/json" hidden></label> <span class="mo mu">or a file from tools/ingest.py</span><div class="row" style="margin-top:8px"><button class="btn" id="lg">Live GFS forecast</button><button class="btn g" id="le">ERA5 reanalysis</button><button class="btn g" onclick="print()">Print brief</button><input type="date" id="ed" aria-label="ERA5 end date" style="background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:6px"></div><div class="mo mu" id="fm"></div><input type="text" id="q" placeholder="Search a division…" aria-label="Search division" style="margin-top:10px"><div class="row" id="rl" style="margin-top:8px"></div></div>
+<div class="card" id="panel"></div></div></section>
+
+<section class="v" id="impact" hidden><h2>ImpactChain · Understand what happens next</h2><p class="mu">Exposure ripples through the graph by message passing: each node combines its upstream neighbours’ exposure using hand-set edge weights. This is the structure a trained Graph Neural Network would learn, but nothing here is trained. Select a node to inspect its rule and uncertainty. Exposure follows the selected region’s flood score.</p>
+<div class="grid"><div class="card"><svg id="ig" viewBox="0 0 700 300" style="width:100%"></svg></div><div class="card" id="nd"></div></div></section>
+
+<section class="v" id="twin" hidden><h2>EarthTwin · Explore possible futures</h2><p class="mu">Scenario exploration with the demonstration model, not a forecast.</p>
+<div class="grid"><div class="card"><label class="mu">Rainfall multiplier: <b id="mv" class="mo"></b></label><input type="range" id="mult" min="1" max="2.5" step=".1">
+<label class="mu">Extra soil saturation: <b id="sv" class="mo"></b></label><input type="range" id="sat" min="0" max=".4" step=".05"><div id="tw" style="margin-top:12px"></div></div>
+<div class="card"><h3>Assumptions &amp; limits</h3><ul class="mu"><li>Per-region terrain and soil values are illustrative, not measured.</li><li>Weights are hand-set; nothing is trained or validated.</li><li>Linear scaling of rainfall ignores drainage, tides and rivers.</li><li>Largest differences point to where closer attention may be warranted.</li></ul><div id="tt"></div></div></div></section>
+
+<section class="v" id="mission" hidden><h2>Mission · Lives and assets protected</h2><p class="mu" style="max-width:720px">The brief asks for forecasting, geospatial ML and alerts. Climate Shield closes the whole loop: <b>detect → quantify impact → allocate response → alert</b>. Below is what each capability is today, stated honestly.</p>
+<div class="g3" style="margin-top:14px">
+<div class="card"><h3>Wildfire ignition · ViT</h3><span class="chip">PLANNED</span><p class="mu">Vision Transformer on thermal satellite telemetry. Needs a VIIRS/MODIS thermal feed; none is connected, so no detections are shown.</p></div>
+<div class="card" data-i data-go="impact" style="cursor:pointer"><h3>Cascade ripple · GNN</h3><span class="chip ok">WORKING BASELINE</span><p class="mu">Message passing across a power, water, road and access graph with hand-set weights. Learned weights are the upgrade. Open ImpactChain →</p></div>
+<div class="card" data-i data-go="response" style="cursor:pointer"><h3>Resource allocation · RL</h3><span class="chip ok">WORKING BASELINE</span><p class="mu">A REINFORCE policy-gradient agent trained in your browser, benchmarked against a greedy optimizer and an even split. Open Response →</p></div>
+<div class="card"><h3>Atmospheric rivers · LSTM</h3><span class="chip">PLANNED</span><p class="mu">Sequence model for extreme precipitation. Needs ERA5 moisture-transport series for training and back-testing.</p></div>
+<div class="card"><h3>Synthetic weather · generative</h3><span class="chip">PLANNED</span><p class="mu">Synthetic high-resolution fields for sparse-sensor regions, validated against held-out stations before any use.</p></div>
+<div class="card" data-i data-go="sentinel" style="cursor:pointer"><h3>Early warning · alerts</h3><span class="chip ok">WORKING DEMO</span><p class="mu">Threshold alerts with reasons, uncertainty and an explicit “not safe-by-absence” rule. Open Sentinel →</p></div></div>
+<div class="card" style="margin-top:12px"><h3>Data adapters</h3><span class="chip">Copernicus CDS / ERA5</span><span class="chip">NOAA GFS</span><span class="chip">Planetary Computer</span><span class="chip">Google Earth Engine</span><span class="chip">OpenWeatherMap</span><p class="mu">ERA5 and GFS have a server-side ingestion script (written untested against live services) whose JSON output this page can load. The other three are planned. Nothing is connected live here.</p></div>
+<div class="g3" style="margin-top:12px"><div class="card"><h3>How “protected” is measured</h3><p class="mu">Lead time gained, hit rate, false-alarm rate, missed-event rate, and exposure covered by pre-positioned resources. The last one is modeled in Response. No real count of lives or assets saved is claimed; that needs back-testing with agencies.</p></div>
+<div class="card"><h3>Where we aim to go further</h3><p class="mu">Platforms such as Sustera, Jupiter Intelligence, One Concern, Descartes Labs and 7Analytics are reference points, with no affiliation. Our aim is one open, explainable loop with uncertainty on every output, from hazard to cascade to response to alert. Superiority is claimed only after benchmarking.</p></div></div></section>
+<section class="v" id="response" hidden><h2>Response · Allocate resources under uncertainty</h2><p class="mu" style="max-width:720px">Each of 200 Monte Carlo runs perturbs the rainfall scenario. A greedy optimizer then places each response unit (pump, boat, team) where it removes the most expected exposure, and the result is compared with an even split.</p>
+<div class="grid"><div class="card"><label class="mu">Response units: <b id="uv" class="mo"></b></label><input type="range" id="un" min="4" max="40" step="1"><label class="mu">Rainfall uncertainty: <b id="cv" class="mo"></b></label><input type="range" id="uc" min="0" max="60" step="5"><span class="chip">DEMO · MODELED INDEX</span><span class="chip">NOT A COUNT OF LIVES OR ASSETS</span><p class="mo mu">Exposure weights per division are illustrative placeholders. Rainfall comes from the Risk Atlas slider.</p></div><div class="card" id="rsp"></div></div>
+<div class="card" style="margin-top:16px"><h3>RL agent · REINFORCE policy gradient</h3><p class="mu" style="max-width:720px">A softmax policy learns from scratch where to send each unit. It sees forecast exposure and diminishing returns, and is rewarded by the exposure mitigated in randomly sampled rainfall outcomes. Training runs in your browser.</p><div class="row"><button class="btn" id="tr">Train agent (800 episodes)</button><span class="chip">SIMULATOR · NOT REAL EVENTS</span></div><div id="rlo" style="margin-top:12px"></div></div></section>
+<section class="v" id="community" hidden><h2>Community Shield · People at the centre</h2><p class="mu">Risk is not shared equally. Climate Shield will map access and exposure for the people behind the numbers. No dataset is connected here, so no vulnerability figures are shown.</p>
+<div class="g3" id="cs"></div></section>
+
+<section class="v" id="sentinel" hidden><h2>Sentinel · Know when conditions change</h2><p class="mu">Explore how an alert could be generated. Everything here is a simulation.</p>
+<div class="card"><label class="mu">Alert threshold (risk score): <b id="tv" class="mo"></b></label><input type="range" id="thr" min="10" max="90" step="5"><div class="row" style="margin-top:8px"><button class="btn" id="sim">Run simulated alert for <span id="sr"></span></button></div><div id="al"></div>
+<p class="mo mu" style="margin-top:14px">Notification preferences: not available in demo. No messages are ever sent.</p></div></section>
+
+<section class="v" id="research" hidden><h2>Inside the Intelligence · The science behind the shield</h2>
+<div class="pipe card" id="pp"></div><div class="g3" style="margin-top:12px" id="rs"></div></section>
+
+<section class="v" id="team" hidden><h2>Team Zhapzody</h2><p class="mu">Building intelligence for a more resilient world.</p>
+<div class="g3"><div class="card"><h3>Kazi Mahir Adeeb</h3><div class="mu">Team Leader</div></div>
+<div class="card"><h3>[Member name]</h3><div class="mu">[Role · biography · photo placeholder]</div></div><div class="card"><h3>[Member name]</h3><div class="mu">[Role · biography · photo placeholder]</div></div></div>
+<p class="sg" style="font-size:20px;margin-top:26px;max-width:680px">“We cannot control every force that changes our planet. But we can become better at understanding those changes, anticipating their consequences and preparing the people who face them.”</p></section>
+</main>
+<div class="card" id="demo" hidden></div>
+<footer>Climate Shield is a research and decision-support prototype, not an official warning service. In an emergency follow your national meteorological and disaster-management authorities.</footer>
+<div id="cd"></div><div id="cr"></div><div id="cl" class="mo"></div>
+<script src="js/app.js" defer></script><script src="js/extras.js" defer></script></body></html>
